@@ -4,13 +4,18 @@
 #include <stdio.h>
 #include <Eigen/Dense> 
 #include "setting.hpp"
+#include "FrameMemory.hpp"
 
 class FramePoseStruct;
+class DepthMapPixelHypothesis;
 
 class Frame
 {
 public:
     Frame(int id, int width, int height, const Eigen::Matrix3f& K, double timestamp, const unsigned char* image);
+    ~Frame();
+    void setDepth(const DepthMapPixelHypothesis* newDepth);
+    
     FramePoseStruct* pose;
     // Accessors
     /** Returns the unique frame id. */
@@ -45,11 +50,53 @@ public:
     /** Returns the frame's recording timestamp. */
     inline double timestamp() const;
     
+    inline float* image(int level = 0);
+    inline const Eigen::Vector4f* gradients(int level = 0);
+    inline const float* maxGradients(int level = 0);
+    inline bool hasIDepthBeenSet() const;
+    inline const float* idepth(int level = 0);
+    inline const float* idepthVar(int level = 0);
+    inline const unsigned char* validity_reAct();
+    inline const float* idepth_reAct();
+    inline const float* idepthVar_reAct();
+    
+    inline bool* refPixelWasGood();
+    inline bool* refPixelWasGoodNoCreate();
+    inline void clear_refPixelWasGood();
+    
+    enum DataFlags
+    {
+        IMAGE			= 1<<0,
+        GRADIENTS		= 1<<1,
+        MAX_GRADIENTS	= 1<<2,
+        IDEPTH			= 1<<3,
+        IDEPTH_VAR		= 1<<4,
+        REF_ID			= 1<<5,
+        
+        ALL = IMAGE | GRADIENTS | MAX_GRADIENTS | IDEPTH | IDEPTH_VAR | REF_ID
+    };
     
     bool depthHasBeenUpdatedFlag;
     bool isActive;
 private:
     void initialize(int id, int width, int height, const Eigen::Matrix3f& K, double timestamp);
+    void require(int dataFlags, int level = 0);
+    void release(int dataFlags, bool pyramidsOnly, bool invalidateOnly);
+    
+    void buildImage(int level);
+    void releaseImage(int level);
+    
+    void buildGradients(int level);
+    void releaseGradients(int level);
+    
+    void buildMaxGradients(int level);
+    void releaseMaxGradients(int level);
+    
+    void buildIDepthAndIDepthVar(int level);
+    void releaseIDepth(int level);
+    void releaseIDepthVar(int level);
+    
+    void printfAssert(const char* message) const;
     struct Data
     {
         int id;
@@ -159,6 +206,99 @@ inline float Frame::cyInv(int level) const
 inline double Frame::timestamp() const
 {
     return data.timestamp;
+}
+
+inline float* Frame::image(int level)
+{
+    if (! data.imageValid[level])
+        require(IMAGE, level);
+    return data.image[level];
+}
+inline const Eigen::Vector4f* Frame::gradients(int level)
+{
+    if (! data.gradientsValid[level])
+        require(GRADIENTS, level);
+    return data.gradients[level];
+}
+inline const float* Frame::maxGradients(int level)
+{
+    if (! data.maxGradientsValid[level])
+        require(MAX_GRADIENTS, level);
+    return data.maxGradients[level];
+}
+inline bool Frame::hasIDepthBeenSet() const
+{
+    return data.hasIDepthBeenSet;
+}
+inline const float* Frame::idepth(int level)
+{
+    if (! data.hasIDepthBeenSet)
+    {
+        printfAssert("Frame::idepth(): idepth has not been set yet!");
+        return nullptr;
+    }
+    if (! data.idepthValid[level])
+        require(IDEPTH, level);
+    return data.idepth[level];
+}
+inline const unsigned char* Frame::validity_reAct()
+{
+    if( !data.reActivationDataValid)
+        return 0;
+    return data.validity_reAct;
+}
+inline const float* Frame::idepth_reAct()
+{
+    if( !data.reActivationDataValid)
+        return 0;
+    return data.idepth_reAct;
+}
+inline const float* Frame::idepthVar_reAct()
+{
+    if( !data.reActivationDataValid)
+        return 0;
+    return data.idepthVar_reAct;
+}
+inline const float* Frame::idepthVar(int level)
+{
+    if (! data.hasIDepthBeenSet)
+    {
+        printfAssert("Frame::idepth(): idepth has not been set yet!");
+        return nullptr;
+    }
+    if (! data.idepthVarValid[level])
+        require(IDEPTH_VAR, level);
+    return data.idepthVar[level];
+}
+
+
+inline bool* Frame::refPixelWasGood()
+{
+    if( data.refPixelWasGood == 0)
+    {
+        
+        if(data.refPixelWasGood == 0)
+        {
+            int width = data.width[SE3TRACKING_MIN_LEVEL];
+            int height = data.height[SE3TRACKING_MIN_LEVEL];
+            data.refPixelWasGood = (bool*)FrameMemory::getInstance().getBuffer(sizeof(bool) * width * height);
+            
+            memset(data.refPixelWasGood, 0xFFFFFFFF, sizeof(bool) * (width * height));
+        }
+    }
+    return data.refPixelWasGood;
+}
+
+
+inline bool* Frame::refPixelWasGoodNoCreate()
+{
+    return data.refPixelWasGood;
+}
+
+inline void Frame::clear_refPixelWasGood()
+{
+    FrameMemory::getInstance().returnBuffer(reinterpret_cast<float*>(data.refPixelWasGood));
+    data.refPixelWasGood=0;
 }
 
 

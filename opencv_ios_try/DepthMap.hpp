@@ -13,6 +13,7 @@
 #include <Eigen/Dense>
 #include <deque>
 #include <opencv2/opencv.hpp>
+#include "setting.hpp"
 
 class DepthMapPixelHypothesis;
 class Frame;
@@ -46,33 +47,10 @@ public:
     
     void invalidate();
     inline bool isValid() {return activeKeyFrame!=0;};
-    
-    int debugPlotDepthMap();
-    
-    // ONLY for debugging, their memory is managed (created & deleted) by this object.
-    cv::Mat debugImageHypothesisHandling;
-    cv::Mat debugImageHypothesisPropagation;
-    cv::Mat debugImageStereoLines;
-    cv::Mat debugImageDepth;
-    
-    void initializeFromGTDepth(Frame* new_frame);
+
     void initializeRandomly(Frame* new_frame);
     
     void setFromExistingKF(Frame* kf);
-    
-    void addTimingSample();
-    float msUpdate, msCreate, msFinalize;
-    float msObserve, msRegularize, msPropagate, msFillHoles, msSetDepth;
-    int nUpdate, nCreate, nFinalize;
-    int nObserve, nRegularize, nPropagate, nFillHoles, nSetDepth;
-    struct timeval lastHzUpdate;
-    float nAvgUpdate, nAvgCreate, nAvgFinalize;
-    float nAvgObserve, nAvgRegularize, nAvgPropagate, nAvgFillHoles, nAvgSetDepth;
-    
-    
-    
-    // pointer to global keyframe graph
-    IndexThreadReduce threadReducer;
     
 private:
     // camera matrix etc.
@@ -86,9 +64,7 @@ private:
     // these are just copies of the pointers given to this function, for convenience.
     // these are NOT managed by this object!
     Frame* activeKeyFrame;
-    boost::shared_lock<boost::shared_mutex> activeKeyFramelock;
     const float* activeKeyFrameImageData;
-    bool activeKeyFrameIsReactivated;
     
     Frame* oldest_referenceFrame;
     Frame* newest_referenceFrame;

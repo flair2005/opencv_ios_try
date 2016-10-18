@@ -1,5 +1,6 @@
 #include "SlamSystem.hpp"
 #include "Frame.hpp"
+#include "DepthMap.hpp"
 
 SlamSystem::SlamSystem(int w, int h, Eigen::Matrix3f K)
 {
@@ -24,11 +25,9 @@ void SlamSystem::randomInit(unsigned char* image, double timeStamp, int id)
 {
     currentKeyFrame.reset(new Frame(id, width, height, K, timeStamp, image));
     map->initializeRandomly(currentKeyFrame.get());
-    keyFrameGraph->addFrame(currentKeyFrame.get());
+    //keyFrameGraph->addFrame(currentKeyFrame.get());
     
-    keyFrameGraph->idToKeyFrameMutex.lock();
-    keyFrameGraph->idToKeyFrame.insert(std::make_pair(currentKeyFrame->id(), currentKeyFrame));
-    keyFrameGraph->idToKeyFrameMutex.unlock();
+    //keyFrameGraph->idToKeyFrame.insert(std::make_pair(currentKeyFrame->id(), currentKeyFrame));
 }
 
 void SlamSystem::trackFrame(unsigned char* image, unsigned int frameID, bool blockUntilMapped, double timestamp)

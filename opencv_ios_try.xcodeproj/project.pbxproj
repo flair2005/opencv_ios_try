@@ -19,6 +19,7 @@
 		521189631DB5A83900694429 /* SlamSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189611DB5A83900694429 /* SlamSystem.cpp */; };
 		521189661DB5B3F500694429 /* FrameMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189641DB5B3F500694429 /* FrameMemory.cpp */; };
 		521189691DB5C02400694429 /* DepthMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189671DB5C02400694429 /* DepthMap.cpp */; };
+		5211896C1DB5C21200694429 /* DepthMapPixelHypothesis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5211896A1DB5C21200694429 /* DepthMapPixelHypothesis.cpp */; };
 		5227AE4B1D9F659700E770B4 /* try_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5227AE4A1D9F659700E770B4 /* try_mm.mm */; };
 		5227AE4F1DA3D46F00E770B4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */; };
 		5227AE511DA3D4E700E770B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE501DA3D4E700E770B4 /* QuartzCore.framework */; };
@@ -62,6 +63,8 @@
 		521189651DB5B3F500694429 /* FrameMemory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrameMemory.hpp; sourceTree = "<group>"; };
 		521189671DB5C02400694429 /* DepthMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DepthMap.cpp; sourceTree = "<group>"; };
 		521189681DB5C02400694429 /* DepthMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DepthMap.hpp; sourceTree = "<group>"; };
+		5211896A1DB5C21200694429 /* DepthMapPixelHypothesis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DepthMapPixelHypothesis.cpp; sourceTree = "<group>"; };
+		5211896B1DB5C21200694429 /* DepthMapPixelHypothesis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DepthMapPixelHypothesis.hpp; sourceTree = "<group>"; };
 		5227AE4A1D9F659700E770B4 /* try_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = try_mm.mm; sourceTree = "<group>"; };
 		5227AE4C1D9F65DA00E770B4 /* common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common_header.h; sourceTree = "<group>"; };
 		5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -184,6 +187,8 @@
 				521189651DB5B3F500694429 /* FrameMemory.hpp */,
 				521189671DB5C02400694429 /* DepthMap.cpp */,
 				521189681DB5C02400694429 /* DepthMap.hpp */,
+				5211896A1DB5C21200694429 /* DepthMapPixelHypothesis.cpp */,
+				5211896B1DB5C21200694429 /* DepthMapPixelHypothesis.hpp */,
 			);
 			path = opencv_ios_try;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				521189631DB5A83900694429 /* SlamSystem.cpp in Sources */,
 				52A8AE901D9B4AC500EEDC40 /* AppDelegate.m in Sources */,
 				521189661DB5B3F500694429 /* FrameMemory.cpp in Sources */,
+				5211896C1DB5C21200694429 /* DepthMapPixelHypothesis.cpp in Sources */,
 				5211895E1DB50ABC00694429 /* FramePoseStruct.cpp in Sources */,
 				521104491DACAABC0073B7E0 /* ImageProcessor.cpp in Sources */,
 				521189691DB5C02400694429 /* DepthMap.cpp in Sources */,
