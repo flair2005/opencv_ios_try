@@ -68,10 +68,11 @@
     self.picker.allowsEditing=NO;//允许编辑图片
     
     imgProc = new ImageProcessor();
+    UIImage* reImg;
+    reImg = [UIImage imageNamed:@"1.png"];
+    cv::Mat imgMat = [mm_Try cvMatFromUIImage: reImg];
+    imgProc->ProcessImage(imgMat);
 }
-
-
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{
     /*添加处理选中图像代码*/
@@ -81,12 +82,19 @@
     } else {
         self.frameLabel.contentMode = UIViewContentModeScaleAspectFill;
     }
+    
+    if (imgProc->imgs.size()==0){
+        reImg = [UIImage imageNamed:@"1.png"];
+    }else{
+        reImg = [UIImage imageNamed:@"2.png"];
+    }
     self.frameLabel.image = reImg;
     [picker.view removeFromSuperview];//退出照相机
-    
     cv::Mat imgMat = [mm_Try cvMatFromUIImage: reImg];
     imgProc->ProcessImage(imgMat);
-    [self.glView SetMapPoints:imgProc->MapPoints];
+    if (imgProc->MapPoints.size()>0){
+        [self.glView SetMapPoints:imgProc->MapPoints];
+    }
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker.view removeFromSuperview];

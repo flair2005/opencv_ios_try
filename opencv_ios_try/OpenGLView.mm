@@ -111,7 +111,7 @@ cv::Mat LookAt(cv::Mat posi, cv::Mat tar, cv::Mat up) {
 - (void) Projection
 {
     float zn = dim / 4;
-    float zf = dim * 8;
+    float zf = dim * 100;
     float nearPlanH = zn*Tan(fov / 2);
     projMat = populateFromFrustumLeft(-nearPlanH*asp*dim / 3, nearPlanH*asp*dim / 3, -nearPlanH*dim / 3, nearPlanH*dim / 3, zn, zf).t();
 }
@@ -182,7 +182,7 @@ cv::Mat LookAt(cv::Mat posi, cv::Mat tar, cv::Mat up) {
                           sizeof(Vertex), (GLvoid*) (sizeof(float) *3));
     
     // 3
-    glDrawArrays(GL_POINTS, 0, 4);
+    glDrawArrays(GL_POINTS, 0, Vertices.size());
     [_context presentRenderbuffer:GL_RENDERBUFFER];
     glDisable(GL_DEPTH_TEST);
 }
@@ -265,10 +265,13 @@ cv::Mat LookAt(cv::Mat posi, cv::Mat tar, cv::Mat up) {
 }
 
 - (void)setupVBOs {
-    GLuint vertexBuffer;
     glGenBuffers(1, &vertexBuffer);
+}
+
+- (void)updateVBOs {
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, Vertices.size(), Vertices.data(), GL_STATIC_DRAW);
+    [self render];
 }
 
 
@@ -300,13 +303,11 @@ cv::Mat LookAt(cv::Mat posi, cv::Mat tar, cv::Mat up) {
         [self setupFrameBuffer];
         
         [self compileShaders];
-        if (Vertices.size()>0){
-            [self setupVBOs];
-            [self Projection];
-            [self SetViewMat];
-            [self render];
+        [self setupVBOs];
+        //[self render];
             //[self setupDisplayLink];
-        }
+        [self Projection];
+        [self SetViewMat];
         
     }
     return self;
@@ -333,8 +334,12 @@ cv::Mat LookAt(cv::Mat posi, cv::Mat tar, cv::Mat up) {
         Vertices[i].Position[0] = (verts[i].posi.x- aviPosi.x)/aviAbsPosi.x*range ;
         Vertices[i].Position[1] = (verts[i].posi.y- aviPosi.y)/aviAbsPosi.y*range ;
         Vertices[i].Position[2] = (verts[i].posi.z- aviPosi.z)/aviAbsPosi.z*range ;
+        Vertices[i].Color[0] =rand()/ (float)RAND_MAX;
+        Vertices[i].Color[1] =rand()/ (float)RAND_MAX;
+        Vertices[i].Color[2] =rand()/ (float)RAND_MAX;
+        Vertices[i].Color[3] =1;
     }
-    
+    [self updateVBOs];
 }
 
 // Replace dealloc method with this

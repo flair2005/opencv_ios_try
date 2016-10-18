@@ -14,9 +14,14 @@
 #include <vector>
 #include "CommonStruct.h"
 
+class SlamSystem;
+
 class ImageProcessor{
 public:
     int ProcessImage(cv::Mat img);
+    void getMP(std::vector<MapPointChamo>& mps, cv::Mat& pose);
     std::vector<MapPointChamo> MapPoints;
+    std::vector<cv::Mat> imgs;
+    SlamSystem* system;
 };
 #endif /* ImageProcessor_hpp */

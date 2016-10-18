@@ -7,15 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520C75061DB49B3700E39868 /* Frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520C75041DB49B3700E39868 /* Frame.cpp */; };
 		521104411DAC7AC70073B7E0 /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 5211043F1DAC7AC70073B7E0 /* SimpleFragment.glsl */; };
 		521104421DAC7AC70073B7E0 /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 521104401DAC7AC70073B7E0 /* SimpleVertex.glsl */; };
 		521104461DAC87C10073B7E0 /* loli.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 521104451DAC87C10073B7E0 /* loli.jpeg */; };
 		521104491DACAABC0073B7E0 /* ImageProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521104471DACAABC0073B7E0 /* ImageProcessor.cpp */; };
 		521104511DADD6460073B7E0 /* OpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 521104501DADD6460073B7E0 /* OpenGLView.mm */; };
+		5211895B1DB507B400694429 /* setting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189591DB507B400694429 /* setting.cpp */; };
+		5211895E1DB50ABC00694429 /* FramePoseStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5211895C1DB50ABC00694429 /* FramePoseStruct.cpp */; };
+		521189601DB50BF500694429 /* sophus in Resources */ = {isa = PBXBuildFile; fileRef = 5211895F1DB50BF500694429 /* sophus */; };
+		521189631DB5A83900694429 /* SlamSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189611DB5A83900694429 /* SlamSystem.cpp */; };
+		521189661DB5B3F500694429 /* FrameMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189641DB5B3F500694429 /* FrameMemory.cpp */; };
 		5227AE4B1D9F659700E770B4 /* try_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5227AE4A1D9F659700E770B4 /* try_mm.mm */; };
 		5227AE4F1DA3D46F00E770B4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */; };
 		5227AE511DA3D4E700E770B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE501DA3D4E700E770B4 /* QuartzCore.framework */; };
-		5227AE561DA3DF3900E770B4 /* Cocos3DMathLib in Resources */ = {isa = PBXBuildFile; fileRef = 5227AE551DA3DF3900E770B4 /* Cocos3DMathLib */; };
+		522C30BA1DB1C7B90091D92D /* libg2o.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30B91DB1C7B90091D92D /* libg2o.a */; };
+		522C30BF1DB1C9380091D92D /* libAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30BB1DB1C9380091D92D /* libAMD.a */; };
+		522C30C01DB1C9380091D92D /* libCAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30BC1DB1C9380091D92D /* libCAMD.a */; };
+		522C30C11DB1C9380091D92D /* libCCOLAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30BD1DB1C9380091D92D /* libCCOLAMD.a */; };
+		522C30C21DB1C9380091D92D /* libCOLAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30BE1DB1C9380091D92D /* libCOLAMD.a */; };
+		522C30C41DB1C9C20091D92D /* libcholmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30C31DB1C9C20091D92D /* libcholmod.a */; };
+		522C30C61DB31EF30091D92D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30C51DB31EF30091D92D /* Accelerate.framework */; };
+		522C30CB1DB35AC10091D92D /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 522C30C91DB35AC10091D92D /* 1.png */; };
+		522C30CC1DB35AC10091D92D /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 522C30CA1DB35AC10091D92D /* 2.png */; };
 		52A8AE8D1D9B4AC500EEDC40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A8AE8C1D9B4AC500EEDC40 /* main.m */; };
 		52A8AE901D9B4AC500EEDC40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A8AE8F1D9B4AC500EEDC40 /* AppDelegate.m */; };
 		52A8AE931D9B4AC500EEDC40 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52A8AE921D9B4AC500EEDC40 /* ViewController.mm */; };
@@ -27,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520C75041DB49B3700E39868 /* Frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Frame.cpp; sourceTree = "<group>"; };
+		520C75051DB49B3700E39868 /* Frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Frame.hpp; sourceTree = "<group>"; };
 		5211043F1DAC7AC70073B7E0 /* SimpleFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragment.glsl; sourceTree = "<group>"; };
 		521104401DAC7AC70073B7E0 /* SimpleVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleVertex.glsl; sourceTree = "<group>"; };
 		521104451DAC87C10073B7E0 /* loli.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loli.jpeg; sourceTree = "<group>"; };
@@ -34,12 +50,29 @@
 		521104481DACAABC0073B7E0 /* ImageProcessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ImageProcessor.hpp; sourceTree = "<group>"; };
 		521104501DADD6460073B7E0 /* OpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenGLView.mm; sourceTree = "<group>"; };
 		5211046E1DAF37430073B7E0 /* CommonStruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonStruct.h; sourceTree = "<group>"; };
+		521189591DB507B400694429 /* setting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = setting.cpp; sourceTree = "<group>"; };
+		5211895A1DB507B400694429 /* setting.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = setting.hpp; sourceTree = "<group>"; };
+		5211895C1DB50ABC00694429 /* FramePoseStruct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FramePoseStruct.cpp; sourceTree = "<group>"; };
+		5211895D1DB50ABC00694429 /* FramePoseStruct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FramePoseStruct.hpp; sourceTree = "<group>"; };
+		5211895F1DB50BF500694429 /* sophus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sophus; sourceTree = "<group>"; };
+		521189611DB5A83900694429 /* SlamSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SlamSystem.cpp; path = ../SlamSystem.cpp; sourceTree = "<group>"; };
+		521189621DB5A83900694429 /* SlamSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SlamSystem.hpp; path = ../SlamSystem.hpp; sourceTree = "<group>"; };
+		521189641DB5B3F500694429 /* FrameMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameMemory.cpp; sourceTree = "<group>"; };
+		521189651DB5B3F500694429 /* FrameMemory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrameMemory.hpp; sourceTree = "<group>"; };
 		5227AE4A1D9F659700E770B4 /* try_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = try_mm.mm; sourceTree = "<group>"; };
 		5227AE4C1D9F65DA00E770B4 /* common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common_header.h; sourceTree = "<group>"; };
 		5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		5227AE501DA3D4E700E770B4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5227AE521DA3DD3400E770B4 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
-		5227AE551DA3DF3900E770B4 /* Cocos3DMathLib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Cocos3DMathLib; path = /Volumes/chamo/working/opencv_ios_try/opencv_ios_try/Cocos3DMathLib; sourceTree = "<absolute>"; };
+		522C30B91DB1C7B90091D92D /* libg2o.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libg2o.a; path = "../../lib/Optimization_Toolkit_iOS-master/libg2o.a"; sourceTree = "<group>"; };
+		522C30BB1DB1C9380091D92D /* libAMD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAMD.a; path = "../../lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild/libAMD.a"; sourceTree = "<group>"; };
+		522C30BC1DB1C9380091D92D /* libCAMD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCAMD.a; path = "../../lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild/libCAMD.a"; sourceTree = "<group>"; };
+		522C30BD1DB1C9380091D92D /* libCCOLAMD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCCOLAMD.a; path = "../../lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild/libCCOLAMD.a"; sourceTree = "<group>"; };
+		522C30BE1DB1C9380091D92D /* libCOLAMD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCOLAMD.a; path = "../../lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild/libCOLAMD.a"; sourceTree = "<group>"; };
+		522C30C31DB1C9C20091D92D /* libcholmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcholmod.a; path = "../../lib/Optimization_Toolkit_iOS-master/g2o/g2o/libcholmod.a"; sourceTree = "<group>"; };
+		522C30C51DB31EF30091D92D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		522C30C91DB35AC10091D92D /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		522C30CA1DB35AC10091D92D /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		52A8AE881D9B4AC500EEDC40 /* opencv_ios_try.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opencv_ios_try.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A8AE8C1D9B4AC500EEDC40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52A8AE8E1D9B4AC500EEDC40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +92,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522C30C61DB31EF30091D92D /* Accelerate.framework in Frameworks */,
+				522C30C41DB1C9C20091D92D /* libcholmod.a in Frameworks */,
+				522C30BF1DB1C9380091D92D /* libAMD.a in Frameworks */,
+				522C30C01DB1C9380091D92D /* libCAMD.a in Frameworks */,
+				522C30C11DB1C9380091D92D /* libCCOLAMD.a in Frameworks */,
+				522C30C21DB1C9380091D92D /* libCOLAMD.a in Frameworks */,
+				522C30BA1DB1C7B90091D92D /* libg2o.a in Frameworks */,
 				5227AE511DA3D4E700E770B4 /* QuartzCore.framework in Frameworks */,
 				5227AE4F1DA3D46F00E770B4 /* OpenGLES.framework in Frameworks */,
 				52A8AEAD1D9B500000EEDC40 /* opencv2.framework in Frameworks */,
@@ -72,6 +112,13 @@
 		5227AE4D1DA3D46F00E770B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				522C30C51DB31EF30091D92D /* Accelerate.framework */,
+				522C30C31DB1C9C20091D92D /* libcholmod.a */,
+				522C30BB1DB1C9380091D92D /* libAMD.a */,
+				522C30BC1DB1C9380091D92D /* libCAMD.a */,
+				522C30BD1DB1C9380091D92D /* libCCOLAMD.a */,
+				522C30BE1DB1C9380091D92D /* libCOLAMD.a */,
+				522C30B91DB1C7B90091D92D /* libg2o.a */,
 				5227AE501DA3D4E700E770B4 /* QuartzCore.framework */,
 				5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */,
 			);
@@ -100,6 +147,11 @@
 		52A8AE8A1D9B4AC500EEDC40 /* opencv_ios_try */ = {
 			isa = PBXGroup;
 			children = (
+				521189611DB5A83900694429 /* SlamSystem.cpp */,
+				521189621DB5A83900694429 /* SlamSystem.hpp */,
+				5211895F1DB50BF500694429 /* sophus */,
+				522C30C91DB35AC10091D92D /* 1.png */,
+				522C30CA1DB35AC10091D92D /* 2.png */,
 				521104501DADD6460073B7E0 /* OpenGLView.mm */,
 				521104451DAC87C10073B7E0 /* loli.jpeg */,
 				5211043F1DAC7AC70073B7E0 /* SimpleFragment.glsl */,
@@ -119,6 +171,14 @@
 				521104471DACAABC0073B7E0 /* ImageProcessor.cpp */,
 				521104481DACAABC0073B7E0 /* ImageProcessor.hpp */,
 				5211046E1DAF37430073B7E0 /* CommonStruct.h */,
+				520C75041DB49B3700E39868 /* Frame.cpp */,
+				520C75051DB49B3700E39868 /* Frame.hpp */,
+				521189591DB507B400694429 /* setting.cpp */,
+				5211895A1DB507B400694429 /* setting.hpp */,
+				5211895C1DB50ABC00694429 /* FramePoseStruct.cpp */,
+				5211895D1DB50ABC00694429 /* FramePoseStruct.hpp */,
+				521189641DB5B3F500694429 /* FrameMemory.cpp */,
+				521189651DB5B3F500694429 /* FrameMemory.hpp */,
 			);
 			path = opencv_ios_try;
 			sourceTree = "<group>";
@@ -190,12 +250,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				52A8AE9B1D9B4AC500EEDC40 /* LaunchScreen.storyboard in Resources */,
-				5227AE561DA3DF3900E770B4 /* Cocos3DMathLib in Resources */,
 				52A8AE981D9B4AC500EEDC40 /* Assets.xcassets in Resources */,
+				521189601DB50BF500694429 /* sophus in Resources */,
+				522C30CC1DB35AC10091D92D /* 2.png in Resources */,
 				52A8AE961D9B4AC500EEDC40 /* Main.storyboard in Resources */,
 				521104411DAC7AC70073B7E0 /* SimpleFragment.glsl in Resources */,
 				521104421DAC7AC70073B7E0 /* SimpleVertex.glsl in Resources */,
 				521104461DAC87C10073B7E0 /* loli.jpeg in Resources */,
+				522C30CB1DB35AC10091D92D /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,8 +270,13 @@
 			files = (
 				52A8AE931D9B4AC500EEDC40 /* ViewController.mm in Sources */,
 				521104511DADD6460073B7E0 /* OpenGLView.mm in Sources */,
+				5211895B1DB507B400694429 /* setting.cpp in Sources */,
+				521189631DB5A83900694429 /* SlamSystem.cpp in Sources */,
 				52A8AE901D9B4AC500EEDC40 /* AppDelegate.m in Sources */,
+				521189661DB5B3F500694429 /* FrameMemory.cpp in Sources */,
+				5211895E1DB50ABC00694429 /* FramePoseStruct.cpp in Sources */,
 				521104491DACAABC0073B7E0 /* ImageProcessor.cpp in Sources */,
+				520C75061DB49B3700E39868 /* Frame.cpp in Sources */,
 				52A8AE8D1D9B4AC500EEDC40 /* main.m in Sources */,
 				5227AE4B1D9F659700E770B4 /* try_mm.mm in Sources */,
 			);
@@ -332,8 +399,19 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/opencv_ios_try",
 				);
+				HEADER_SEARCH_PATHS = (
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/g2o/g2o",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/g2o/g2o/eigen",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/SuiteSparse/CHOLMOD/CHOLMOD/Include",
+					/Volumes/chamo/working/opencv_ios_try/opencv_ios_try/sophus,
+				);
 				INFOPLIST_FILE = opencv_ios_try/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/g2o/g2o",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "chamo.opencv-ios-try";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -348,8 +426,19 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/opencv_ios_try",
 				);
+				HEADER_SEARCH_PATHS = (
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/g2o/g2o",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/g2o/g2o/eigen",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/SuiteSparse/CHOLMOD/CHOLMOD/Include",
+					/Volumes/chamo/working/opencv_ios_try/opencv_ios_try/sophus,
+				);
 				INFOPLIST_FILE = opencv_ios_try/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild",
+					"/Volumes/chamo/lib/Optimization_Toolkit_iOS-master/g2o/g2o",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "chamo.opencv-ios-try";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

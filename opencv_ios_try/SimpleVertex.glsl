@@ -12,7 +12,7 @@ uniform mat4 Modelview;
 
 
 void main(void) { // 4
-    gl_PointSize = float(2);
+    //gl_PointSize = float(2);
     DestinationColor = SourceColor; // 5
     //gl_Position =Position;
     //gl_Position = vec4(0,0,-0.5,1); // 6

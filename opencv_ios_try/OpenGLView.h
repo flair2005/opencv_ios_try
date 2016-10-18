@@ -41,6 +41,8 @@ typedef struct {
     
     GLuint _modelViewUniform;
     
+    GLuint vertexBuffer;
+    
     float _currentRotation;
     
     GLuint _depthRenderBuffer;
