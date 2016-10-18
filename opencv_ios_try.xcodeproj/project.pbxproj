@@ -75,6 +75,8 @@
 		521189731DB653A200694429 /* SophusUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SophusUtil.h; sourceTree = "<group>"; };
 		521189741DB65A3F00694429 /* SE3Tracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SE3Tracker.cpp; sourceTree = "<group>"; };
 		521189751DB65A3F00694429 /* SE3Tracker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SE3Tracker.hpp; sourceTree = "<group>"; };
+		521189771DB6666E00694429 /* LGSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSX.h; sourceTree = "<group>"; };
+		521189781DB66D3300694429 /* globalFuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globalFuncs.h; sourceTree = "<group>"; };
 		5227AE4A1D9F659700E770B4 /* try_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = try_mm.mm; sourceTree = "<group>"; };
 		5227AE4C1D9F65DA00E770B4 /* common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common_header.h; sourceTree = "<group>"; };
 		5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -163,6 +165,8 @@
 		52A8AE8A1D9B4AC500EEDC40 /* opencv_ios_try */ = {
 			isa = PBXGroup;
 			children = (
+				521189781DB66D3300694429 /* globalFuncs.h */,
+				521189771DB6666E00694429 /* LGSX.h */,
 				521189731DB653A200694429 /* SophusUtil.h */,
 				521189611DB5A83900694429 /* SlamSystem.cpp */,
 				521189621DB5A83900694429 /* SlamSystem.hpp */,

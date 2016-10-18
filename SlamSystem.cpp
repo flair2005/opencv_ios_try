@@ -5,6 +5,7 @@
 #include "TrackingReference.hpp"
 #include "SophusUtil.h"
 #include "FramePoseStruct.hpp"
+#include "SE3Tracker.hpp"
 
 
 SlamSystem::SlamSystem(int w, int h, Eigen::Matrix3f K)

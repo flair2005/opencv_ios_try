@@ -76,6 +76,10 @@ public:
         ALL = IMAGE | GRADIENTS | MAX_GRADIENTS | IDEPTH | IDEPTH_VAR | REF_ID
     };
     
+    Eigen::Vector3f* permaRef_posData;	// (x,y,z)
+    Eigen::Vector2f* permaRef_colorAndVarData;	// (I, Var)
+    int permaRefNumPts;
+    
     bool depthHasBeenUpdatedFlag;
     bool isActive;
 private:
@@ -144,6 +148,8 @@ private:
         bool* refPixelWasGood;
     };
     Data data;
+    
+    
     
 };
 

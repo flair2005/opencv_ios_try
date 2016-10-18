@@ -150,6 +150,10 @@ void Frame::initialize(int id, int width, int height, const Eigen::Matrix3f& K, 
     
     data.hasIDepthBeenSet = false;
     depthHasBeenUpdatedFlag = false;
+    
+    permaRefNumPts = 0;
+    permaRef_colorAndVarData = 0;
+    permaRef_posData = 0;
 
     
     for (int level = 0; level < PYRAMID_LEVELS; ++ level)
