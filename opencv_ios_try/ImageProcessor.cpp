@@ -66,7 +66,8 @@ int ImageProcessor::ProcessImage(cv::Mat img){
     K(0,2) = cx;
     K(1,2) = cy;
     system = new SlamSystem(img.cols, img.rows, K);
-    system->trackFrame(img.data, 0, false, 0);
+    system->randomInit(img.data, 0, 0);
+    //system->trackFrame(img.data, 1, false, 0);
     return 1;
 }
 

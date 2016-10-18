@@ -47,7 +47,7 @@ public:
     
     
     bool depthHasBeenUpdatedFlag;
-
+    bool isActive;
 private:
     void initialize(int id, int width, int height, const Eigen::Matrix3f& K, double timestamp);
     struct Data
@@ -97,6 +97,7 @@ private:
         bool* refPixelWasGood;
     };
     Data data;
+    
 };
 
 inline int Frame::id() const

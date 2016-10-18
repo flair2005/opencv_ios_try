@@ -3,6 +3,10 @@
 #define FrameMemory_hpp
 
 #include <stdio.h>
+#include <Eigen/Core> 
+#include <unordered_map>
+#include <vector>
+#include <list>
 
 class Frame;
 class FrameMemory
@@ -23,8 +27,7 @@ public:
      * Corresponds to "delete[] buffer". */
     void returnBuffer(void* buffer);
     
-    
-    boost::shared_lock<boost::shared_mutex> activateFrame(Frame* frame);
+    void activateFrame(Frame* frame);
     void deactivateFrame(Frame* frame);
     void pruneActiveFrames();
     
@@ -32,13 +35,10 @@ public:
 private:
     FrameMemory();
     void* allocateBuffer(unsigned int sizeInByte);
-    
-    boost::mutex accessMutex;
+
     std::unordered_map< void*, unsigned int > bufferSizes;
     std::unordered_map< unsigned int, std::vector< void* > > availableBuffers;
     
-    
-    boost::mutex activeFramesMutex;
     std::list<Frame*> activeFrames;
 };
 

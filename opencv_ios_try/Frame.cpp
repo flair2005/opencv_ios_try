@@ -8,12 +8,15 @@
 
 #include "Frame.hpp"
 #include "FramePoseStruct.hpp"
+#include "FrameMemory.hpp"
 
 int privateFrameAllocCount = 0;
 
 Frame::Frame(int id, int width, int height, const Eigen::Matrix3f& K, double timestamp, const unsigned char* image)
 {
     initialize(id, width, height, K, timestamp);
+    
+    data.image[0] = FrameMemory::getInstance().getFloatBuffer(data.width[0]*data.height[0]);
     
     float* maxPt = data.image[0] + data.width[0]*data.height[0];
     
