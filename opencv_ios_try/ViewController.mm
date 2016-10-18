@@ -72,6 +72,9 @@
     reImg = [UIImage imageNamed:@"1.png"];
     cv::Mat imgMat = [mm_Try cvMatFromUIImage: reImg];
     imgProc->ProcessImage(imgMat);
+    reImg = [UIImage imageNamed:@"2.png"];
+    imgMat = [mm_Try cvMatFromUIImage: reImg];
+    imgProc->ProcessImage(imgMat);
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{

@@ -20,6 +20,9 @@
 		521189661DB5B3F500694429 /* FrameMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189641DB5B3F500694429 /* FrameMemory.cpp */; };
 		521189691DB5C02400694429 /* DepthMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189671DB5C02400694429 /* DepthMap.cpp */; };
 		5211896C1DB5C21200694429 /* DepthMapPixelHypothesis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5211896A1DB5C21200694429 /* DepthMapPixelHypothesis.cpp */; };
+		5211896F1DB5CDF600694429 /* KeyFrameGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5211896D1DB5CDF500694429 /* KeyFrameGraph.cpp */; };
+		521189721DB6515000694429 /* TrackingReference.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189701DB6515000694429 /* TrackingReference.cpp */; };
+		521189761DB65A3F00694429 /* SE3Tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189741DB65A3F00694429 /* SE3Tracker.cpp */; };
 		5227AE4B1D9F659700E770B4 /* try_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5227AE4A1D9F659700E770B4 /* try_mm.mm */; };
 		5227AE4F1DA3D46F00E770B4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */; };
 		5227AE511DA3D4E700E770B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE501DA3D4E700E770B4 /* QuartzCore.framework */; };
@@ -65,6 +68,13 @@
 		521189681DB5C02400694429 /* DepthMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DepthMap.hpp; sourceTree = "<group>"; };
 		5211896A1DB5C21200694429 /* DepthMapPixelHypothesis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DepthMapPixelHypothesis.cpp; sourceTree = "<group>"; };
 		5211896B1DB5C21200694429 /* DepthMapPixelHypothesis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DepthMapPixelHypothesis.hpp; sourceTree = "<group>"; };
+		5211896D1DB5CDF500694429 /* KeyFrameGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyFrameGraph.cpp; sourceTree = "<group>"; };
+		5211896E1DB5CDF600694429 /* KeyFrameGraph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyFrameGraph.hpp; sourceTree = "<group>"; };
+		521189701DB6515000694429 /* TrackingReference.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrackingReference.cpp; sourceTree = "<group>"; };
+		521189711DB6515000694429 /* TrackingReference.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TrackingReference.hpp; sourceTree = "<group>"; };
+		521189731DB653A200694429 /* SophusUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SophusUtil.h; sourceTree = "<group>"; };
+		521189741DB65A3F00694429 /* SE3Tracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SE3Tracker.cpp; sourceTree = "<group>"; };
+		521189751DB65A3F00694429 /* SE3Tracker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SE3Tracker.hpp; sourceTree = "<group>"; };
 		5227AE4A1D9F659700E770B4 /* try_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = try_mm.mm; sourceTree = "<group>"; };
 		5227AE4C1D9F65DA00E770B4 /* common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common_header.h; sourceTree = "<group>"; };
 		5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -153,6 +163,7 @@
 		52A8AE8A1D9B4AC500EEDC40 /* opencv_ios_try */ = {
 			isa = PBXGroup;
 			children = (
+				521189731DB653A200694429 /* SophusUtil.h */,
 				521189611DB5A83900694429 /* SlamSystem.cpp */,
 				521189621DB5A83900694429 /* SlamSystem.hpp */,
 				5211895F1DB50BF500694429 /* sophus */,
@@ -189,6 +200,12 @@
 				521189681DB5C02400694429 /* DepthMap.hpp */,
 				5211896A1DB5C21200694429 /* DepthMapPixelHypothesis.cpp */,
 				5211896B1DB5C21200694429 /* DepthMapPixelHypothesis.hpp */,
+				5211896D1DB5CDF500694429 /* KeyFrameGraph.cpp */,
+				5211896E1DB5CDF600694429 /* KeyFrameGraph.hpp */,
+				521189701DB6515000694429 /* TrackingReference.cpp */,
+				521189711DB6515000694429 /* TrackingReference.hpp */,
+				521189741DB65A3F00694429 /* SE3Tracker.cpp */,
+				521189751DB65A3F00694429 /* SE3Tracker.hpp */,
 			);
 			path = opencv_ios_try;
 			sourceTree = "<group>";
@@ -280,9 +297,12 @@
 			files = (
 				52A8AE931D9B4AC500EEDC40 /* ViewController.mm in Sources */,
 				521104511DADD6460073B7E0 /* OpenGLView.mm in Sources */,
+				5211896F1DB5CDF600694429 /* KeyFrameGraph.cpp in Sources */,
 				5211895B1DB507B400694429 /* setting.cpp in Sources */,
 				521189631DB5A83900694429 /* SlamSystem.cpp in Sources */,
 				52A8AE901D9B4AC500EEDC40 /* AppDelegate.m in Sources */,
+				521189761DB65A3F00694429 /* SE3Tracker.cpp in Sources */,
+				521189721DB6515000694429 /* TrackingReference.cpp in Sources */,
 				521189661DB5B3F500694429 /* FrameMemory.cpp in Sources */,
 				5211896C1DB5C21200694429 /* DepthMapPixelHypothesis.cpp in Sources */,
 				5211895E1DB50ABC00694429 /* FramePoseStruct.cpp in Sources */,

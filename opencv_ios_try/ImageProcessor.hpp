@@ -18,6 +18,7 @@ class SlamSystem;
 
 class ImageProcessor{
 public:
+    ImageProcessor();
     int ProcessImage(cv::Mat img);
     void getMP(std::vector<MapPointChamo>& mps, cv::Mat& pose);
     std::vector<MapPointChamo> MapPoints;

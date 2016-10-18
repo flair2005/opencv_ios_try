@@ -21,7 +21,7 @@ class Frame;
 class FramePoseStruct;
 
 typedef Eigen::Matrix<float, 7, 7> Matrix7x7;
-
+class KeyFrameGraph;
 class SlamSystem
 {
 public:
@@ -30,11 +30,12 @@ public:
     int width;
     int height;
     Eigen::Matrix3f K;
-    
+
     SlamSystem(int w, int h, Eigen::Matrix3f K);
     SlamSystem(const SlamSystem&) = delete;
     SlamSystem& operator=(const SlamSystem&) = delete;
     ~SlamSystem();
+    bool isInited;
     void randomInit(unsigned char* image, double timeStamp, int id);
     void trackFrame(unsigned char* image, unsigned int frameID, bool blockUntilMapped, double timestamp);
     
@@ -46,5 +47,7 @@ private:
     std::shared_ptr<Frame> latestTrackedFrame;
     std::deque< Frame* > newKeyFrames;
     std::shared_ptr<Frame> currentKeyFrame;
+    KeyFrameGraph* keyFrameGraph;
+    bool createNewKeyFrame;
 };
 #endif /* SlamSystem_hpp */

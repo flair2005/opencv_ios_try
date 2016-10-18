@@ -54,6 +54,11 @@ int findCorrespondingPoints( const cv::Mat& img1, const cv::Mat& img2, std::vect
     return true;
 }
 
+ImageProcessor::ImageProcessor(){
+    system = NULL;
+
+}
+
 int ImageProcessor::ProcessImage(cv::Mat img){
     MapPoints.clear();
     if (img.type()!= CV_8UC1){
@@ -65,9 +70,12 @@ int ImageProcessor::ProcessImage(cv::Mat img){
     K(1,1) = fy;
     K(0,2) = cx;
     K(1,2) = cy;
-    system = new SlamSystem(img.cols, img.rows, K);
-    system->randomInit(img.data, 0, 0);
-    //system->trackFrame(img.data, 1, false, 0);
+    if (system == NULL){
+        system = new SlamSystem(img.cols, img.rows, K);
+        system->randomInit(img.data, 0, 0);
+    }else{
+        system->trackFrame(img.data, 1, false, 0);
+    }
     return 1;
 }
 
