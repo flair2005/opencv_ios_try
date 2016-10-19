@@ -229,9 +229,69 @@ void Frame::initialize(int id, int width, int height, const Eigen::Matrix3f& K, 
     edgeErrorSum = edgesNum = 1;
     
     isActive = false;
+}
+
+void Frame::takeReActivationData(DepthMapPixelHypothesis* depthMap)
+{
+    if(data.validity_reAct == 0)
+        data.validity_reAct = (unsigned char*) FrameMemory::getInstance().getBuffer(data.width[0]*data.height[0]);
+    
+    if(data.idepth_reAct == 0)
+        data.idepth_reAct = FrameMemory::getInstance().getFloatBuffer((data.width[0]*data.height[0]));
+    
+    if(data.idepthVar_reAct == 0)
+        data.idepthVar_reAct = FrameMemory::getInstance().getFloatBuffer((data.width[0]*data.height[0]));
+    
+    
+    float* id_pt = data.idepth_reAct;
+    float* id_pt_max = data.idepth_reAct + (data.width[0]*data.height[0]);
+    float* idv_pt = data.idepthVar_reAct;
+    unsigned char* val_pt = data.validity_reAct;
+    
+    for (; id_pt < id_pt_max; ++ id_pt, ++ idv_pt, ++ val_pt, ++depthMap)
+    {
+        if(depthMap->isValid)
+        {
+            *id_pt = depthMap->idepth;
+            *idv_pt = depthMap->idepth_var;
+            *val_pt = depthMap->validity_counter;
+        }
+        else if(depthMap->blacklisted < MIN_BLACKLIST)
+        {
+            *idv_pt = -2;
+        }
+        else
+        {
+            *idv_pt = -1;
+        }
+    }
+    
+    data.reActivationDataValid = true;
+}
+
+
+void Frame::prepareForStereoWith(Frame* other, Sim3 thisToOther, const Eigen::Matrix3f& K, const int level)
+{
+    Sim3 otherToThis = thisToOther.inverse();
+    
+    //otherToThis = data.worldToCam * other->data.camToWorld;
+    K_otherToThis_R = K * otherToThis.rotationMatrix().cast<float>() * otherToThis.scale();
+    otherToThis_t = otherToThis.translation().cast<float>();
+    K_otherToThis_t = K * otherToThis_t;
     
     
     
+    thisToOther_t = thisToOther.translation().cast<float>();
+    K_thisToOther_t = K * thisToOther_t;
+    thisToOther_R = thisToOther.rotationMatrix().cast<float>() * thisToOther.scale();
+    otherToThis_R_row0 = thisToOther_R.col(0);
+    otherToThis_R_row1 = thisToOther_R.col(1);
+    otherToThis_R_row2 = thisToOther_R.col(2);
+    
+    distSquared = otherToThis.translation().dot(otherToThis.translation());
+    
+    referenceID = other->id();
+    referenceLevel = level;
 }
 
 void Frame::require(int dataFlags, int level)

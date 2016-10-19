@@ -29,6 +29,10 @@ SlamSystem::SlamSystem(int w, int h, Eigen::Matrix3f K)
     isInited = false;
     
     map =  new DepthMap(w,h,K);
+    
+    tracker = new SE3Tracker(w,h,K);
+    for (int level = 4; level < PYRAMID_LEVELS; ++level)
+        tracker->settings.maxItsPerLvl[level] = 0;
 }
 
 SlamSystem::~SlamSystem()
@@ -83,6 +87,13 @@ void SlamSystem::trackFrame(unsigned char* image, unsigned int frameID, bool blo
         float minVal = fmin(0.2f + keyFrameGraph->keyframesAll.size() * 0.8f / INITIALIZATION_PHASE_COUNT,1.0f);
         
         if(keyFrameGraph->keyframesAll.size() < INITIALIZATION_PHASE_COUNT)	minVal *= 0.7;
+        
+//        lastTrackingClosenessScore = trackableKeyFrameSearch->getRefFrameScore(dist.dot(dist), tracker->pointUsage);
+//        
+//        if (lastTrackingClosenessScore > minVal)
+//        {
+//            createNewKeyFrame = true;
+//        }
     }
     
     if(unmappedTrackedFrames.size() < 50 || (unmappedTrackedFrames.size() < 100 && trackingNewFrame->getTrackingParent()->numMappedOnThisTotal < 10))

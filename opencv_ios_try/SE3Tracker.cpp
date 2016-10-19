@@ -549,9 +549,6 @@ void SE3Tracker::calculateWarpUpdate(LGS6 &ls)
         // step 6: integrate into A and b:
         ls.update(v, r, *(buf_weight_p+i));
     }
-    
     // solve ls
     ls.finish();
-    //result = ls.A.ldlt().solve(ls.b);
-  
 }

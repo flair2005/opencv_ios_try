@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <string>
+#define UNZERO(val) (val < 0 ? (val > -1e-10 ? -1e-10 : val) : (val < 1e-10 ? 1e-10 : val))
+#define DIVISION_EPS 1e-10f
 
 #define VALIDITY_COUNTER_MAX (5.0f)		// validity will never be higher than this
 #define VALIDITY_COUNTER_MAX_VARIABLE (250.0f)		// validity will never be higher than this

@@ -17,6 +17,9 @@ public:
     ~Frame();
     void setDepth(const DepthMapPixelHypothesis* newDepth);
     
+    /** Prepares this frame for stereo comparisons with the other frame (computes some intermediate values that will be needed) */
+    void prepareForStereoWith(Frame* other, Sim3 thisToOther, const Eigen::Matrix3f& K, const int level);
+    
     FramePoseStruct* pose;
     
     Sim3 getScaledCamToWorld(int num=0);
@@ -82,6 +85,8 @@ public:
         ALL = IMAGE | GRADIENTS | MAX_GRADIENTS | IDEPTH | IDEPTH_VAR | REF_ID
     };
     
+    void takeReActivationData(DepthMapPixelHypothesis* depthMap);
+    
     Eigen::Vector3f* permaRef_posData;	// (x,y,z)
     Eigen::Vector2f* permaRef_colorAndVarData;	// (I, Var)
     int permaRefNumPts;
@@ -100,6 +105,19 @@ public:
     
     bool depthHasBeenUpdatedFlag;
     bool isActive;
+    
+    int referenceID;
+    int referenceLevel;
+    float distSquared;
+    Eigen::Matrix3f K_otherToThis_R;
+    Eigen::Vector3f K_otherToThis_t;
+    Eigen::Vector3f otherToThis_t;
+    Eigen::Vector3f K_thisToOther_t;
+    Eigen::Matrix3f thisToOther_R;
+    Eigen::Vector3f otherToThis_R_row0;
+    Eigen::Vector3f otherToThis_R_row1;
+    Eigen::Vector3f otherToThis_R_row2;
+    Eigen::Vector3f thisToOther_t;
 private:
     void initialize(int id, int width, int height, const Eigen::Matrix3f& K, double timestamp);
     void require(int dataFlags, int level = 0);
