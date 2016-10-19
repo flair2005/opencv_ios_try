@@ -5,6 +5,7 @@
 #include <Eigen/Dense> 
 #include "setting.hpp"
 #include "FrameMemory.hpp"
+#include "SophusUtil.h"
 
 class FramePoseStruct;
 class DepthMapPixelHypothesis;
@@ -17,6 +18,11 @@ public:
     void setDepth(const DepthMapPixelHypothesis* newDepth);
     
     FramePoseStruct* pose;
+    
+    Sim3 getScaledCamToWorld(int num=0);
+    bool hasTrackingParent();
+    Frame* getTrackingParent();
+    
     // Accessors
     /** Returns the unique frame id. */
     inline int id() const;
@@ -79,6 +85,18 @@ public:
     Eigen::Vector3f* permaRef_posData;	// (x,y,z)
     Eigen::Vector2f* permaRef_colorAndVarData;	// (I, Var)
     int permaRefNumPts;
+    
+    // statistics
+    float initialTrackedResidual;
+    int numFramesTrackedOnThis;
+    int numMappedOnThis;
+    int numMappedOnThisTotal;
+    float meanIdepth;
+    int numPoints;
+    int idxInKeyframes;
+    float edgeErrorSum, edgesNum;
+    int numMappablePixels;
+    float meanInformation;
     
     bool depthHasBeenUpdatedFlag;
     bool isActive;

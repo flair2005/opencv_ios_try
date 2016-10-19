@@ -44,6 +44,7 @@ private:
     SE3Tracker* tracker;
     DepthMap* map;
     
+    std::deque< std::shared_ptr<Frame> > unmappedTrackedFrames;
     std::shared_ptr<Frame> latestTrackedFrame;
     std::deque< Frame* > newKeyFrames;
     std::shared_ptr<Frame> currentKeyFrame;

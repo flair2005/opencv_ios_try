@@ -65,42 +65,26 @@ void SlamSystem::trackFrame(unsigned char* image, unsigned int frameID, bool blo
                                                        trackingReference,
                                                        trackingNewFrame.get(),
                                                        frameToReference_initialEstimate);
-//
-//    if(manualTrackingLossIndicated || tracker->diverged || (keyFrameGraph->keyframesAll.size() > INITIALIZATION_PHASE_COUNT && !tracker->trackingWasGood))
-//    {
-//        trackingReference->invalidate();
-//        
-//        trackingIsGood = false;
-//        nextRelocIdx = -1;
-//        
-//        unmappedTrackedFramesMutex.lock();
-//        unmappedTrackedFramesSignal.notify_one();
-//        unmappedTrackedFramesMutex.unlock();
-//        
-//        manualTrackingLossIndicated = false;
-//        return;
-//    }
-//    
-//    keyFrameGraph->addFrame(trackingNewFrame.get());
-//
-//    latestTrackedFrame = trackingNewFrame;
-//    if (!my_createNewKeyframe && currentKeyFrame->numMappedOnThisTotal > MIN_NUM_MAPPED)
-//    {
-//        Sophus::Vector3d dist = newRefToFrame_poseUpdate.translation() * currentKeyFrame->meanIdepth;
-//        float minVal = fmin(0.2f + keyFrameGraph->keyframesAll.size() * 0.8f / INITIALIZATION_PHASE_COUNT,1.0f);
-//        
-//        if(keyFrameGraph->keyframesAll.size() < INITIALIZATION_PHASE_COUNT)	minVal *= 0.7;
-//        
-//        lastTrackingClosenessScore = trackableKeyFrameSearch->getRefFrameScore(dist.dot(dist), tracker->pointUsage);
-//        
-//        if (lastTrackingClosenessScore > minVal)
-//        {
-//            createNewKeyFrame = true;
-//        }
-//    }
-//    
-//    
-//    unmappedTrackedFramesMutex.lock();
-//    if(unmappedTrackedFrames.size() < 50 || (unmappedTrackedFrames.size() < 100 && trackingNewFrame->getTrackingParent()->numMappedOnThisTotal < 10))
-//        unmappedTrackedFrames.push_back(trackingNewFrame);
+
+    if(manualTrackingLossIndicated || tracker->diverged || (keyFrameGraph->keyframesAll.size() > INITIALIZATION_PHASE_COUNT && !tracker->trackingWasGood))
+    {
+        trackingReference->invalidate();
+        
+        manualTrackingLossIndicated = false;
+        return;
+    }
+    
+    keyFrameGraph->addFrame(trackingNewFrame.get());
+
+    latestTrackedFrame = trackingNewFrame;
+    if (!my_createNewKeyframe && currentKeyFrame->numMappedOnThisTotal > MIN_NUM_MAPPED)
+    {
+        Sophus::Vector3d dist = newRefToFrame_poseUpdate.translation() * currentKeyFrame->meanIdepth;
+        float minVal = fmin(0.2f + keyFrameGraph->keyframesAll.size() * 0.8f / INITIALIZATION_PHASE_COUNT,1.0f);
+        
+        if(keyFrameGraph->keyframesAll.size() < INITIALIZATION_PHASE_COUNT)	minVal *= 0.7;
+    }
+    
+    if(unmappedTrackedFrames.size() < 50 || (unmappedTrackedFrames.size() < 100 && trackingNewFrame->getTrackingParent()->numMappedOnThisTotal < 10))
+        unmappedTrackedFrames.push_back(trackingNewFrame);
 }

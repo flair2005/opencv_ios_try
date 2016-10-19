@@ -27,6 +27,7 @@ Frame::Frame(int id, int width, int height, const Eigen::Matrix3f& K, double tim
         *pt = *image;
         image++;
     }
+    
     data.imageValid[0] = true;
     privateFrameAllocCount++;
 }
@@ -84,6 +85,9 @@ void Frame::setDepth(const DepthMapPixelHypothesis* newDepth)
         }
     }
     
+    meanIdepth = sumIdepth / numIdepth;
+    numPoints = numIdepth;
+    
     data.idepthValid[0] = true;
     data.idepthVarValid[0] = true;
     release(IDEPTH | IDEPTH_VAR, true, true);
@@ -126,6 +130,18 @@ void Frame::release(int dataFlags, bool pyramidsOnly, bool invalidateOnly)
                 releaseIDepthVar(level);
         }
     }
+}
+
+Sim3 Frame::getScaledCamToWorld(int num){
+    return pose->getCamToWorld();
+}
+
+bool Frame::hasTrackingParent() {
+    return pose->trackingParent != nullptr;
+}
+
+Frame* Frame::getTrackingParent() {
+    return pose->trackingParent->frame;
 }
 
 void Frame::initialize(int id, int width, int height, const Eigen::Matrix3f& K, double timestamp)
@@ -198,6 +214,23 @@ void Frame::initialize(int id, int width, int height, const Eigen::Matrix3f& K, 
     data.idepth_reAct = 0;
     
     data.refPixelWasGood = 0;
+    
+    permaRefNumPts = 0;
+    permaRef_colorAndVarData = 0;
+    permaRef_posData = 0;
+    
+    meanIdepth = 1;
+    numPoints = 0;
+    
+    numFramesTrackedOnThis = numMappedOnThis = numMappedOnThisTotal = 0;
+    
+    idxInKeyframes = -1;
+    
+    edgeErrorSum = edgesNum = 1;
+    
+    isActive = false;
+    
+    
     
 }
 
