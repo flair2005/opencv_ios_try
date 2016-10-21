@@ -30,6 +30,8 @@ public:
     int width;
     int height;
     Eigen::Matrix3f K;
+    
+    bool trackingIsGood;
 
     SlamSystem(int w, int h, Eigen::Matrix3f K);
     SlamSystem(const SlamSystem&) = delete;
@@ -43,6 +45,19 @@ private:
     TrackingReference* trackingReference; // tracking reference for current keyframe. only used by tracking.
     SE3Tracker* tracker;
     DepthMap* map;
+    
+    bool haveUnmergedOptimizationOffset;
+    void mergeOptimizationOffset();
+    void finishCurrentKeyframe();
+    void discardCurrentKeyframe();
+    
+    void changeKeyframe(bool noCreate, bool force, float maxScore);
+    void createNewCurrentKeyframe(std::shared_ptr<Frame> newKeyframeCandidate);
+    void loadNewCurrentKeyframe(Frame* keyframeToLoad);
+    
+    bool updateKeyframe();
+    
+    void takeRelocalizeResult();
     
     std::deque< std::shared_ptr<Frame> > unmappedTrackedFrames;
     std::shared_ptr<Frame> latestTrackedFrame;

@@ -659,13 +659,6 @@ template void DepthMap::regularizeDepthMapRow<false>(int validityTH, int yMin, i
 
 void DepthMap::regularizeDepthMap(bool removeOcclusions, int validityTH)
 {
-    runningStats.num_reg_smeared=0;
-    runningStats.num_reg_total=0;
-    runningStats.num_reg_deleted_secondary=0;
-    runningStats.num_reg_deleted_occluded=0;
-    runningStats.num_reg_blacklisted=0;
-    runningStats.num_reg_setBlacklisted=0;
-    
     memcpy(otherDepthMap,currentDepthMap,width*height*sizeof(DepthMapPixelHypothesis));
     
     
@@ -842,9 +835,7 @@ void DepthMap::updateKeyframe(std::deque< std::shared_ptr<Frame> > referenceFram
         while((int)referenceFrameByID.size() + referenceFrameByID_offset <= frame->id())
             referenceFrameByID.push_back(frame.get());
     }
-    
-    resetCounters();
-    
+
     observeDepth();
 
     regularizeDepthMap(false, VAL_SUM_MIN_FOR_KEEP);

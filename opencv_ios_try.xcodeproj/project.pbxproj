@@ -16,7 +16,6 @@
 		5211895B1DB507B400694429 /* setting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189591DB507B400694429 /* setting.cpp */; };
 		5211895E1DB50ABC00694429 /* FramePoseStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5211895C1DB50ABC00694429 /* FramePoseStruct.cpp */; };
 		521189601DB50BF500694429 /* sophus in Resources */ = {isa = PBXBuildFile; fileRef = 5211895F1DB50BF500694429 /* sophus */; };
-		521189631DB5A83900694429 /* SlamSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189611DB5A83900694429 /* SlamSystem.cpp */; };
 		521189661DB5B3F500694429 /* FrameMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189641DB5B3F500694429 /* FrameMemory.cpp */; };
 		521189691DB5C02400694429 /* DepthMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 521189671DB5C02400694429 /* DepthMap.cpp */; };
 		5211896C1DB5C21200694429 /* DepthMapPixelHypothesis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5211896A1DB5C21200694429 /* DepthMapPixelHypothesis.cpp */; };
@@ -26,6 +25,7 @@
 		5227AE4B1D9F659700E770B4 /* try_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5227AE4A1D9F659700E770B4 /* try_mm.mm */; };
 		5227AE4F1DA3D46F00E770B4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */; };
 		5227AE511DA3D4E700E770B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5227AE501DA3D4E700E770B4 /* QuartzCore.framework */; };
+		522840A71DB9AAC10012FC69 /* SlamSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 522840A51DB9AAC10012FC69 /* SlamSystem.cpp */; };
 		522C30BA1DB1C7B90091D92D /* libg2o.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30B91DB1C7B90091D92D /* libg2o.a */; };
 		522C30BF1DB1C9380091D92D /* libAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30BB1DB1C9380091D92D /* libAMD.a */; };
 		522C30C01DB1C9380091D92D /* libCAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 522C30BC1DB1C9380091D92D /* libCAMD.a */; };
@@ -60,8 +60,6 @@
 		5211895C1DB50ABC00694429 /* FramePoseStruct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FramePoseStruct.cpp; sourceTree = "<group>"; };
 		5211895D1DB50ABC00694429 /* FramePoseStruct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FramePoseStruct.hpp; sourceTree = "<group>"; };
 		5211895F1DB50BF500694429 /* sophus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sophus; sourceTree = "<group>"; };
-		521189611DB5A83900694429 /* SlamSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SlamSystem.cpp; path = ../SlamSystem.cpp; sourceTree = "<group>"; };
-		521189621DB5A83900694429 /* SlamSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SlamSystem.hpp; path = ../SlamSystem.hpp; sourceTree = "<group>"; };
 		521189641DB5B3F500694429 /* FrameMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameMemory.cpp; sourceTree = "<group>"; };
 		521189651DB5B3F500694429 /* FrameMemory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrameMemory.hpp; sourceTree = "<group>"; };
 		521189671DB5C02400694429 /* DepthMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DepthMap.cpp; sourceTree = "<group>"; };
@@ -82,6 +80,8 @@
 		5227AE4E1DA3D46F00E770B4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		5227AE501DA3D4E700E770B4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5227AE521DA3DD3400E770B4 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
+		522840A51DB9AAC10012FC69 /* SlamSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SlamSystem.cpp; sourceTree = "<group>"; };
+		522840A61DB9AAC10012FC69 /* SlamSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SlamSystem.hpp; sourceTree = "<group>"; };
 		522C30B91DB1C7B90091D92D /* libg2o.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libg2o.a; path = "../../lib/Optimization_Toolkit_iOS-master/libg2o.a"; sourceTree = "<group>"; };
 		522C30BB1DB1C9380091D92D /* libAMD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAMD.a; path = "../../lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild/libAMD.a"; sourceTree = "<group>"; };
 		522C30BC1DB1C9380091D92D /* libCAMD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCAMD.a; path = "../../lib/Optimization_Toolkit_iOS-master/SuiteSparse/prebuild/libCAMD.a"; sourceTree = "<group>"; };
@@ -165,11 +165,11 @@
 		52A8AE8A1D9B4AC500EEDC40 /* opencv_ios_try */ = {
 			isa = PBXGroup;
 			children = (
+				522840A51DB9AAC10012FC69 /* SlamSystem.cpp */,
+				522840A61DB9AAC10012FC69 /* SlamSystem.hpp */,
 				521189781DB66D3300694429 /* globalFuncs.h */,
 				521189771DB6666E00694429 /* LGSX.h */,
 				521189731DB653A200694429 /* SophusUtil.h */,
-				521189611DB5A83900694429 /* SlamSystem.cpp */,
-				521189621DB5A83900694429 /* SlamSystem.hpp */,
 				5211895F1DB50BF500694429 /* sophus */,
 				522C30C91DB35AC10091D92D /* 1.png */,
 				522C30CA1DB35AC10091D92D /* 2.png */,
@@ -300,10 +300,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				52A8AE931D9B4AC500EEDC40 /* ViewController.mm in Sources */,
+				522840A71DB9AAC10012FC69 /* SlamSystem.cpp in Sources */,
 				521104511DADD6460073B7E0 /* OpenGLView.mm in Sources */,
 				5211896F1DB5CDF600694429 /* KeyFrameGraph.cpp in Sources */,
 				5211895B1DB507B400694429 /* setting.cpp in Sources */,
-				521189631DB5A83900694429 /* SlamSystem.cpp in Sources */,
 				52A8AE901D9B4AC500EEDC40 /* AppDelegate.m in Sources */,
 				521189761DB65A3F00694429 /* SE3Tracker.cpp in Sources */,
 				521189721DB6515000694429 /* TrackingReference.cpp in Sources */,
