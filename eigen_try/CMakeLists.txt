@@ -1,0 +1,49 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+PROJECT(eigen_try)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+
+LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../opencv_ios_try/FindPackage)
+FIND_PACKAGE(Eigen3 3.1.0 REQUIRED)
+FIND_PACKAGE(OpenCV 3.0.0 REQUIRED core highgui imgproc video features2d calib3d imgcodecs xfeatures2d)
+FIND_PACKAGE(G2O REQUIRED)
+find_package(SuiteParse REQUIRED)
+FIND_PACKAGE(Boost REQUIRED system serialization filesystem thread)
+
+SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
+
+
+INCLUDE_DIRECTORIES(
+  ${G2O_INCLUDE_DIR}
+  ${OpenCV_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
+  ${PROJECT_SOURCE_DIR}/src
+  ${PROJECT_SOURCE_DIR}/thirdparty/Sophus
+  ${CSPARSE_INCLUDE_DIR} #Has been set by SuiteParse
+  ${CHOLMOD_INCLUDE_DIR} #Has been set by SuiteParse
+  ${Boost_INCLUDE_DIRS}
+)
+
+set(LIBS
+  ${G2O_CORE_LIBRARY}
+  ${CHOLMOD_LIBRARIES}
+  ${OpenCV_LIBS}
+  ${Boost_LIBRARIES}
+)
+
+include_directories(
+  ${EIGEN3_INCLUDE_DIR}
+  ${PROJECT_SOURCE_DIR}/src
+  ${PROJECT_SOURCE_DIR}/thirdparty/Sophus
+  ${CSPARSE_INCLUDE_DIR} #Has been set by SuiteParse
+  ${CHOLMOD_INCLUDE_DIR} #Has been set by SuiteParse
+)
+
+ADD_EXECUTABLE( ${PROJECT_NAME} main.cpp )
+
+target_link_libraries(${PROJECT_NAME} ${LIBS})
+
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR} )
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR} )
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR} )

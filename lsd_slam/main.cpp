@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <string.h>
 #include <vector>
-#include <SlamSystem.hpp>
+#include <SlamSystem.h>
 #include <time.h>
 #include <iostream>
 #include <fstream>
@@ -44,11 +44,11 @@ int main(int argc, char **argv) {
     K(0,2) = cx;
     K(1,2) = cy;
     
-    SlamSystem *system=NULL;
+    lsd_slam::SlamSystem *system=NULL;
     
     {
         cv::Mat img = getAImage(startFrame ,imageAddr);
-        system = new SlamSystem(img.cols, img.rows, K);
+        system = new lsd_slam::SlamSystem(img.cols, img.rows, K);
         system->randomInit(img.data, startFrame, startFrame);
     }
     
