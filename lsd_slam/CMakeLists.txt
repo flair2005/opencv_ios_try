@@ -12,7 +12,7 @@ find_package(SuiteParse REQUIRED)
 FIND_PACKAGE(Boost REQUIRED system serialization filesystem thread)
 
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
-
+#add_definitions("-DNDEBUG")
 
 INCLUDE_DIRECTORIES(
   ${G2O_INCLUDE_DIR}
@@ -55,54 +55,48 @@ set(LIBS
 message(header: ${G2O_INCLUDE_DIR})
 message(lib: ${G2O_TYPES_SLAM3D_LIBRARY})
 
-set(lsd_SOURCE_FILES
+set(SOURCE_FILES
   ${PROJECT_SOURCE_DIR}/src/DataStructures/Frame.cpp
   ${PROJECT_SOURCE_DIR}/src/DataStructures/FramePoseStruct.cpp
   ${PROJECT_SOURCE_DIR}/src/DataStructures/FrameMemory.cpp
   ${PROJECT_SOURCE_DIR}/src/SlamSystem.cpp
-  ${PROJECT_SOURCE_DIR}/src/LiveSLAMWrapper.cpp
   ${PROJECT_SOURCE_DIR}/src/DepthEstimation/DepthMap.cpp
   ${PROJECT_SOURCE_DIR}/src/DepthEstimation/DepthMapPixelHypothesis.cpp
   ${PROJECT_SOURCE_DIR}/src/util/globalFuncs.cpp
   ${PROJECT_SOURCE_DIR}/src/util/SophusUtil.cpp
   ${PROJECT_SOURCE_DIR}/src/util/settings.cpp
-  ${PROJECT_SOURCE_DIR}/src/util/Undistorter.cpp
   ${PROJECT_SOURCE_DIR}/src/Tracking/Sim3Tracker.cpp
   ${PROJECT_SOURCE_DIR}/src/Tracking/Relocalizer.cpp
   ${PROJECT_SOURCE_DIR}/src/Tracking/SE3Tracker.cpp
   ${PROJECT_SOURCE_DIR}/src/Tracking/TrackingReference.cpp
-  ${PROJECT_SOURCE_DIR}/src/IOWrapper/Timestamp.cpp
   ${PROJECT_SOURCE_DIR}/src/GlobalMapping/FabMap.cpp
   ${PROJECT_SOURCE_DIR}/src/GlobalMapping/KeyFrameGraph.cpp
   ${PROJECT_SOURCE_DIR}/src/GlobalMapping/g2oTypeSim3Sophus.cpp
   ${PROJECT_SOURCE_DIR}/src/GlobalMapping/TrackableKeyFrameSearch.cpp
+  ${PROJECT_SOURCE_DIR}/src/IOWrapper/OpenCV/ImageDisplay_OpenCV.cpp
+  ${PROJECT_SOURCE_DIR}/src/IOWrapper/ROS/ROSOutput3DWrapper.cpp
+  ${PROJECT_SOURCE_DIR}/main.cpp
 
 ${PROJECT_SOURCE_DIR}/src/DataStructures/Frame.h
 ${PROJECT_SOURCE_DIR}/src/DataStructures/FramePoseStruct.h
 ${PROJECT_SOURCE_DIR}/src/DataStructures/FrameMemory.h
 ${PROJECT_SOURCE_DIR}/src/SlamSystem.h
-${PROJECT_SOURCE_DIR}/src/LiveSLAMWrapper.h
 ${PROJECT_SOURCE_DIR}/src/DepthEstimation/DepthMap.h
 ${PROJECT_SOURCE_DIR}/src/DepthEstimation/DepthMapPixelHypothesis.h
 ${PROJECT_SOURCE_DIR}/src/util/globalFuncs.h
 ${PROJECT_SOURCE_DIR}/src/util/SophusUtil.h
 ${PROJECT_SOURCE_DIR}/src/util/settings.h
-${PROJECT_SOURCE_DIR}/src/util/Undistorter.h
 ${PROJECT_SOURCE_DIR}/src/Tracking/Sim3Tracker.h
 ${PROJECT_SOURCE_DIR}/src/Tracking/Relocalizer.h
 ${PROJECT_SOURCE_DIR}/src/Tracking/SE3Tracker.h
 ${PROJECT_SOURCE_DIR}/src/Tracking/TrackingReference.h
-${PROJECT_SOURCE_DIR}/src/IOWrapper/Timestamp.h
 ${PROJECT_SOURCE_DIR}/src/GlobalMapping/FabMap.h
 ${PROJECT_SOURCE_DIR}/src/GlobalMapping/KeyFrameGraph.h
 ${PROJECT_SOURCE_DIR}/src/GlobalMapping/g2oTypeSim3Sophus.h
 ${PROJECT_SOURCE_DIR}/src/GlobalMapping/TrackableKeyFrameSearch.h
-)
-set(SOURCE_FILES
-  ${lsd_SOURCE_FILES}
-  ${PROJECT_SOURCE_DIR}/src/IOWrapper/ROS/ROSImageStreamThread.cpp
-  ${PROJECT_SOURCE_DIR}/src/IOWrapper/ROS/ROSOutput3DWrapper.cpp
-  ${PROJECT_SOURCE_DIR}/src/IOWrapper/OpenCV/ImageDisplay_OpenCV.cpp
+${PROJECT_SOURCE_DIR}/src/IOWrapper/ImageDisplay.h
+${PROJECT_SOURCE_DIR}/src/IOWrapper/ROS/ROSOutput3DWrapper.h
+
 )
 
 include_directories(
@@ -113,31 +107,10 @@ include_directories(
   ${CHOLMOD_INCLUDE_DIR} #Has been set by SuiteParse
 )
 
-
-ADD_LIBRARY(${PROJECT_NAME} SHARED ${SOURCE_FILES})
-
+ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} ${LIBS})
-set_target_properties( ${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_LIST_DIR} )
-set_target_properties( ${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_LIST_DIR} )
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR} )
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR} )
+set_target_properties( ${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR} )
 
-#######################
 
-ADD_EXECUTABLE( ${PROJECT_NAME}_main main.cpp )
-
-IF(APPLE)
-target_link_libraries( ${PROJECT_NAME}_main
-  ${OpenCV_LIBS}
-  ${Boost_LIBRARIES}
-  ${PROJECT_SOURCE_DIR}/liblsd_slam.dylib
-)
-ELSE()
-target_link_libraries( ${PROJECT_NAME}_main
-  ${OpenCV_LIBS}
-  ${Boost_LIBRARIES}
-  ${PROJECT_SOURCE_DIR}/liblsd_slam.so
-)
-ENDIF()
-
-set_target_properties( ${PROJECT_NAME}_main PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR} )
-set_target_properties( ${PROJECT_NAME}_main PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR} )
-set_target_properties( ${PROJECT_NAME}_main PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR} )

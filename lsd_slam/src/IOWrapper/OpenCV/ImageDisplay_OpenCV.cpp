@@ -34,7 +34,7 @@ namespace lsd_slam
 namespace Util
 {
 
-	const bool useImageDisplayThread = true;
+	const bool useImageDisplayThread = false;
 
 
 	std::unordered_set<std::string> openWindows;
@@ -110,13 +110,15 @@ void displayImage(const char* windowName, const cv::Mat& image, bool autoSize)
 			}
 		}
 		cv::imshow(windowName, image);
+        //cv::waitKey(1);
 	}
-	//cv::waitKey(1);
+	
 }
 
 int waitKey(int milliseconds)
 {
-	return cv::waitKey(milliseconds);
+    return 0;
+	//return cv::waitKey(milliseconds);
 }
 
 int waitKeyNoConsume(int milliseconds)

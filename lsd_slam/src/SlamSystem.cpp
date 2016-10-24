@@ -25,7 +25,6 @@
 #include "Tracking/Sim3Tracker.h"
 #include "DepthEstimation/DepthMap.h"
 #include "Tracking/TrackingReference.h"
-#include "LiveSLAMWrapper.h"
 #include "util/globalFuncs.h"
 #include "GlobalMapping/KeyFrameGraph.h"
 #include "GlobalMapping/TrackableKeyFrameSearch.h"
@@ -105,7 +104,7 @@ SlamSystem::SlamSystem(int w, int h, Eigen::Matrix3f K, bool enableSLAM)
 
 	keepRunning = true;
 	doFinalOptimization = false;
-	depthMapScreenshotFlag = false;
+	depthMapScreenshotFlag = true;
 	lastTrackingClosenessScore = 0;
 
 	thread_mapping = boost::thread(&SlamSystem::mappingThreadLoop, this);
@@ -191,12 +190,6 @@ void SlamSystem::mergeOptimizationOffset()
 	}
 
 	poseConsistencyMutex.unlock();
-
-
-
-
-
-
 	if(needPublish)
 		publishKeyframeGraph();
 }
@@ -687,8 +680,8 @@ void SlamSystem::debugDisplayDepthMap()
 	if (displayDepthMap)
 		Util::displayImage( "DebugWindow DEPTH", map->debugImageDepth, false );
 
-	int pressedKey = Util::waitKey(1);
-	handleKey(pressedKey);
+	//int pressedKey = Util::waitKey(1);
+	//handleKey(pressedKey);
 }
 
 
@@ -1003,11 +996,9 @@ void SlamSystem::trackFrame(uchar* image, unsigned int frameID, bool blockUntilM
 		if(keyFrameGraph->keyframesAll.size() < INITIALIZATION_PHASE_COUNT)	minVal *= 0.7;
 
 		lastTrackingClosenessScore = trackableKeyFrameSearch->getRefFrameScore(dist.dot(dist), tracker->pointUsage);
-
 		if (lastTrackingClosenessScore > minVal)
 		{
 			createNewKeyFrame = true;
-
 			if(enablePrintDebugInfo && printKeyframeSelectionInfo)
 				printf("SELECT %d on %d! dist %.3f + usage %.3f = %.3f > 1\n",trackingNewFrame->id(),trackingNewFrame->getTrackingParent()->id(), dist.dot(dist), tracker->pointUsage, trackableKeyFrameSearch->getRefFrameScore(dist.dot(dist), tracker->pointUsage));
 		}

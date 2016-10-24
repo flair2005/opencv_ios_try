@@ -34,8 +34,8 @@ bool autoRunWithinFrame = true;
 
 int debugDisplay = 0;
 
-bool onSceenInfoDisplay = true;
-bool displayDepthMap = true;
+bool onSceenInfoDisplay = false;
+bool displayDepthMap = false;
 bool dumpMap = false;
 bool doFullReConstraintTrack = false;
 
@@ -53,12 +53,12 @@ bool printTrackingIterationInfo = false;
 bool printFrameBuildDebugInfo = false;
 bool printMemoryDebugInfo = false;
 
-bool printKeyframeSelectionInfo = false;
+bool printKeyframeSelectionInfo = true;
 bool printConstraintSearchInfo = false;
 bool printOptimizationInfo = false;
 bool printRelocalizationInfo = false;
 
-bool printThreadingInfo = false;
+bool printThreadingInfo = true;
 bool printMappingTiming = false;
 bool printOverallTiming = false;
 

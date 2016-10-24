@@ -7,12 +7,13 @@
 #include <iostream>
 #include <fstream>
 #include <opencv2/opencv.hpp>
+#include "IOWrapper/ROS/ROSOutput3DWrapper.h"
 
 cv::Mat getAImage(int id, std::string imageAddr){
     std::stringstream ss;
     ss<<imageAddr<<id <<".png";
     std::string frameName = ss.str();
-    cv::Mat img = cv::imread(frameName, CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat img = cv::imread(frameName);
     if (img.type()!= CV_8UC1){
         img.convertTo(img, CV_8UC1);
     }
@@ -48,12 +49,17 @@ int main(int argc, char **argv) {
     
     {
         cv::Mat img = getAImage(startFrame ,imageAddr);
-        system = new lsd_slam::SlamSystem(img.cols, img.rows, K);
+        system = new lsd_slam::SlamSystem(img.cols, img.rows, K, true);
+        lsd_slam::Output3DWrapper* outputWrapper = new lsd_slam::ROSOutput3DWrapper(img.cols, img.rows);
+        system->setVisualization(outputWrapper);
         system->randomInit(img.data, startFrame, startFrame);
+        
     }
     
     for (int i=startFrame+1;i<endFrame;i++){
-        cv::Mat img = getAImage(startFrame ,imageAddr);
+        cv::Mat img = getAImage(i ,imageAddr);
+        cv::imshow("chamo", img);
+        cv::waitKey(1);
         system->trackFrame(img.data, i, false, 0);
     }
 }
